@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planner</title>
+  <link rel="stylesheet" href="style1.css">
+
+</head>
+
+<body>
+  <div id="todolist">
+    <fieldset>
+      <legend>TODO list</legend>
+
+      <div>
+        <div>
+          <input id="todo" class="todo" type="text" placeholder=" Whats on your mind?">
+          <button id="myBtn" type="submit">+</button>
+        </div>
+
+      </div>
+
+      <div id="list" class="list">
+
+      </div>
+    </fieldset>
+
+
+  </div>
+  <script>
+
+    document.getElementById("myBtn").addEventListener("click", listAppend);
+
+
+    function listAppend() {
+
+      var newlist = document.getElementById("todo").value;
+      console.log(newlist);
+      if (newlist != '') {
+        const List = document.createElement("li");
+        List.innerText = newlist;
+        document.getElementById('list').appendChild(List);
+        localStorage.setItem("index", newlist);
+      }
+
+
+    }
+
+    var items = document.querySelector('div.list');
+    items.addEventListener('click', function (e) {
+      console.log("checked");
+      if (e.target.tagName === 'LI') {
+        e.target.classList.toggle('checked');
+      }
+    });
+
+    var input = document.getElementById("myInput");
+
+    // Execute a function when the user releases a key on the keyboard
+    document.getElementById("todo").addEventListener("keyup", function (event) {
+      // Number 13 is the "Enter" key on the keyboard
+      if (event.keyCode === 13) {
+        // Trigger the button element with a click
+        document.getElementById("myBtn").click();
+      }
+    });
+
+
+  </script>
+
+
+</body>
+
+</html>
